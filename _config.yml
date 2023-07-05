@@ -1,8 +1,41 @@
-title: Github Pages Test Three
+title: Greenstand
 description: Suffering is the first noble truth.
 theme: just-the-docs
 
 url: https://pranavkparti.github.io
 
+# Set a path/url to a logo that will be displayed instead of the title
+# logo: "assets/images/logo_512x512.png"
+
+favicon_ico: "/assets/images/favicon.ico"
+
 aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+  Greenstand on Github: https://github.com/orgs/Greenstand
+
+exclude:
+  # from https://github.com/jekyll/jekyll/blob/master/lib/site_template/_config.yml:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # specific to the theme website:
+  - bin/
+  - lib/
+  - "*.gemspec"
+  - "*.gem"
+  - LICENSE.txt
+  - package.json
+  - package-lock.json
+  - Rakefile
+  - README.md
+  - CODE_OF_CONDUCT.md
+  - docker-compose.yml
+  - Dockerfile
+  # theme test code
+  - fixtures/

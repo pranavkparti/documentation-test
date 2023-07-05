@@ -1,39 +1,43 @@
-<h1>Contributor Documentation</h1>
-<p>An annotated index of links to how-to's, guides, references, and tutorials
-to help those contributing to Treetracker software.</p>
-<p>To contribute, comment, or question the documentation, please submit an issue or pull request at the 
-<a href='https://github.com/Greenstand/greenstand-documentation'>github repository</a>.
+---
+layout: default
+title: Contribute
+has_children: true
+nav_order: 4
+---
 
-<p><b>Libraries</b>: 
-<p class='list'>
-<a href='https://github.com/Greenstand'>Repositories</a>: </b>Greenstand organizes and publishes its open-source Treetracker software platform in multiple github repositories, most of them public.</p>
-<p class='list'>
-<a href='https://app.gitbook.com/@greenstand/spaces'>Greenstand Team Library</a> Inside information for volunteers and staff, by invitation only.</p>
+Contributor Documentation
+=========================
 
-<p><b>Operations: </b></p>
-<p class='list'>
-<a href='https://greenstand.org/devbox/email-signature-template'>Email signature template</a></p>
-<p class='list'>
-<a href='https://greenstand.org/devbox/admin-panel-proccess'>Administrative panel process</a>: How Greenstand tags new tree tokens regarding the tree's age, quality, species, and acceptability.</p>
+An annotated index of links to how-to's, guides, references, and tutorials to help those contributing to Treetracker software.
 
-<p><b>Policies: </b></p>
-<p class='list'>
-<a href='https://docs.google.com/document/d/1OXcHTF2hTu-b3h5jbDP-uNaBOKgBogEB-C8aIRvmOP0/edit?usp=share_link'>Contributor Covenant Code Of Conduct</a></p>
-</p>
+To contribute, comment, or question the documentation, please submit an issue or pull request at the [github repository](https://github.com/Greenstand/greenstand-documentation).
 
-<p><b>How Greenstand Software Engineers Work: </b></p>
-<p class='list'>
-<a href='https://greenstand.gitbook.io/engineering'>Engineer's Handbook</a>: Information about the teams building the Treetracker software, the tools we use, and how to contribute to the work.</p>
-<p class='list'>
-<a href='https://github.com/Greenstand/Greenstand-Overview/blob/master/README.md'>Welcome to Greenstand's Treetracker project</a>: Introduction for prospective sofware developers.</p>
+**Libraries**:
 
-<p><b>Greenstand APIs: </b></p>
-<p class='list'>
-<a href='https://greenstand.org/docs/contributor-docs/_swagger'>API Documentation</a>: Reference documentation generated from OpenAPI specifications in Greenstand repositories.</p>
+[Repositories](https://github.com/Greenstand): Greenstand organizes and publishes its open-source Treetracker software platform in multiple github repositories, most of them public.
 
-<p><b>The Wallet API: </b>
-The the application for managing and moving Greenstand tree tokens.</p>
-<p class='list'>
-<a href='https://github.com/Greenstand/treetracker-wallet-api/blob/master/README.md'>github README: Getting Started</a>: How to download, install, and run the development version of the API server.</p>
+[Greenstand Team Library](https://app.gitbook.com/@greenstand/spaces) Inside information for volunteers and staff, by invitation only.
 
+**Operations:**
 
+[Email signature template](https://greenstand.org/devbox/email-signature-template)
+
+[Administrative panel process](https://greenstand.org/devbox/admin-panel-proccess): How Greenstand tags new tree tokens regarding the tree's age, quality, species, and acceptability.
+
+**Policies:**
+
+[Contributor Covenant Code Of Conduct](https://docs.google.com/document/d/1OXcHTF2hTu-b3h5jbDP-uNaBOKgBogEB-C8aIRvmOP0/edit?usp=share_link)
+
+**How Greenstand Software Engineers Work:**
+
+[Engineer's Handbook](https://greenstand.gitbook.io/engineering): Information about the teams building the Treetracker software, the tools we use, and how to contribute to the work.
+
+[Welcome to Greenstand's Treetracker project](https://github.com/Greenstand/Greenstand-Overview/blob/master/README.md): Introduction for prospective sofware developers.
+
+**Greenstand APIs:**
+
+[API Documentation](https://greenstand.org/docs/contributor-docs/_swagger): Reference documentation generated from OpenAPI specifications in Greenstand repositories.
+
+**The Wallet API:** The the application for managing and moving Greenstand tree tokens.
+
+[github README: Getting Started](https://github.com/Greenstand/treetracker-wallet-api/blob/master/README.md): How to download, install, and run the development version of the API server.

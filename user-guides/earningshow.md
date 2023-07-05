@@ -1,3 +1,10 @@
+---
+title: Earnings
+layout: default
+parent: User Guides
+nav_order: 1
+---
+
 How to Record Earnings and Payments
 ==============================
 

@@ -1,3 +1,10 @@
+---
+title: Earnings Reference
+layout: default
+parent: User Guides
+nav_order: 2
+---
+
 
 Greenstand Earnings Reference
 ================================================
