@@ -11,8 +11,12 @@ favicon_ico: "/assets/images/favicon.ico"
 
 color_scheme: greenstand
 
+
+permalink: pretty
+
 aux_links:
-  Greenstand on Github: https://github.com/orgs/Greenstand
+#  Greenstand on Github: https://github.com/orgs/Greenstand
+
 
 search_enabled: true
 search:
@@ -41,6 +45,9 @@ search:
 
 # For copy button on code
 enable_copy_code_button: true
+
+# Enable or disable heading anchors
+heading_anchors: true
 
 
 
