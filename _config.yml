@@ -5,12 +5,73 @@ theme: just-the-docs
 url: https://pranavkparti.github.io
 
 # Set a path/url to a logo that will be displayed instead of the title
-# logo: "assets/images/logo_512x512.png"
+logo: "assets/images/logo_512x512.png"
 
 favicon_ico: "/assets/images/favicon.ico"
 
+color_scheme: greenstand
+
 aux_links:
   Greenstand on Github: https://github.com/orgs/Greenstand
+
+search_enabled: true
+search:
+  # Split pages into sections that can be searched individually
+  # Supports 1 - 6, default: 2
+  heading_level: 2
+  # Maximum amount of previews per search result
+  # Default: 3
+  previews: 2
+  # Maximum amount of words to display before a matched word in the preview
+  # Default: 5
+  preview_words_before: 3
+  # Maximum amount of words to display after a matched word in the preview
+  # Default: 10
+  preview_words_after: 3
+  # Set the search token separator
+  # Default: /[\s\-/]+/
+  # Example: enable support for hyphenated search words
+  tokenizer_separator: /[\s/]+/
+  # Display the relative url in search results
+  # Supports true (default) or false
+  rel_url: true
+  # Enable or disable the search button that appears in the bottom right corner of every page
+  # Supports true or false (default)
+  button: false
+
+# For copy button on code
+enable_copy_code_button: true
+
+
+
+# Footer content
+# appears at the bottom of every page's main content
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: "©2023 GREENSTAND - ALL RIGHTS RESERVED"
+
+# Footer last edited timestamp
+last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
+last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
+
+last-modified-at:
+  date-format: "%Y %B %A %d %S:%R"
+
+# Footer "Edit this page on GitHub" link text
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/pranavkparti/pranavkparti.github.io" # the github URL for your repo
+gh_edit_branch: "main" # the branch that your docs is served from
+# gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-last-modified-at
 
 exclude:
   # from https://github.com/jekyll/jekyll/blob/master/lib/site_template/_config.yml:
@@ -39,3 +100,4 @@ exclude:
   - Dockerfile
   # theme test code
   - fixtures/
+
