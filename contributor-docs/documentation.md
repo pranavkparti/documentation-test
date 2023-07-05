@@ -3,6 +3,7 @@ title: Documentation
 layout: default
 nav_order: 2
 parent: Contribute
+has_children: true
 ---
 
 # Documentation
@@ -52,7 +53,7 @@ The documentation can be viewed locally by serving the Jekyll site on `localhost
 
 - Clone the documentation repository on your local machine.
 - Install Bundler and Jekyll if they are not installed on your machine.
-  - [https://jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/)
+  - <https://jekyllrb.com/docs/installation/>
 - Run `bundle install` in the working directory of the repo (where the `Gemfile` is).
 - Run `bundle exec jekyll serve` to deploy the site. The default URL is `http://localhost:4000`.
 
@@ -60,7 +61,7 @@ The documentation can be viewed locally by serving the Jekyll site on `localhost
 
 ## References
 
-[^fn1]: [https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo](https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo)
+[^fn1]: <https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo>
 
 
 
