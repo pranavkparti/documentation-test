@@ -10,8 +10,8 @@ grand_parent: Contribute
 
 ### Website
 
-- <https://www.greenstand.org/treetracker/how-it-works>
-  - And the other pages there
+- <https://greenstand.org/devbox>
+- <https://greenstand.org/docs>
 
 ### Gitbook
 - <https://docs.greenstand.org/engineering/>
@@ -30,3 +30,8 @@ grand_parent: Contribute
 - <https://github.com/Greenstand/treetracker-web-map-api/wiki>
 - <https://github.com/Greenstand/treetracker-infrastructure/wiki>
 - <https://github.com/Greenstand/treetracker-admin-api/wiki>
+
+### Other
+- <https://github.com/Greenstand/system-design-docs>
+- <https://github.com/Greenstand/greenstand-documentation>
+

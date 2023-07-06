@@ -15,4 +15,3 @@ nav_order: 1
 ## Contributor Docs
 [Technical documentation for software developers](contributor-docs/)
 
-----
