@@ -1,0 +1,1301 @@
+openapi: 3.0.0
+info:
+  title: treetracker
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /captures:
+    parameters: []
+    get:
+      summary: captures
+      tags: []
+      responses:
+        '200':
+          description: List of captures
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  captures:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/capture'
+                  links:
+                    type: object
+                    properties:
+                      prev:
+                        type: string
+                      next:
+                        type: string
+                  query:
+                    type: object
+                    properties:
+                      limit:
+                        type: string
+                      offset:
+                        type: string
+                required:
+                  - captures
+              examples:
+                example:
+                  value:
+                    captures:
+                      - id: daebb6d6-b7cc-4e15-8783-fb56739cf14e
+                        image_url: string
+                        user_photo_url: string
+                        created_at: string
+                        lat: 0
+                        lon: 0
+                        tree_associated: true
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: string
+      operationId: ''
+      description: 'Return a list of captures, dependent on query parameters.'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: query offset
+        - schema:
+            type: string
+          in: query
+          name: limit
+          description: number of records to return
+        - schema:
+            type: boolean
+          in: query
+          name: tree_associated
+          description: filter by weather or not returned captures have been associated with a tree
+          allowEmptyValue: true
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: tree_id
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: grower_account_id
+        - schema:
+            type: array
+            format: uuid
+          in: query
+          name: organization_ids
+          description: 'filter by planting organization, respecting organizational hierarchy.'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: species_id
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: captured_at_start_date
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: captured_at_end_date
+        - schema:
+            type: string
+          in: query
+          name: order_by
+          description: one of captured_at or created_at
+        - schema:
+            type: string
+          in: query
+          name: order
+    post:
+      summary: ''
+      operationId: post-captures
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: string
+                reference_id:
+                  type: number
+                tree_id:
+                  type: string
+                  format: uuid
+                image_url:
+                  type: string
+                  minLength: 1
+                lat:
+                  type: number
+                lon:
+                  type: number
+                grower_account_id:
+                  type: string
+                  format: uuid
+                planting_organization_id:
+                  type: string
+                  format: uuid
+                species_id:
+                  type: string
+                  format: uuid
+                morphology:
+                  type: string
+                  minLength: 1
+                age:
+                  type: number
+                note:
+                  type: string
+                  minLength: 1
+                attributes:
+                  type: object
+                  properties:
+                    entries:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                            minLength: 1
+                          value:
+                            type: string
+                            minLength: 1
+                        required:
+                          - key
+                          - value
+                  required:
+                    - entries
+                session_id:
+                  type: string
+                  format: uuid
+                gps_accuracy:
+                  type: number
+                device_configuration_id:
+                  type: string
+                  format: uuid
+                captured_at:
+                  type: string
+                  format: date-time
+                domain_specific_data:
+                  type: object
+              required:
+                - reference_id
+                - image_url
+                - lat
+                - lon
+                - grower_account_id
+                - planting_organization_id
+                - session_id
+                - gps_accuracy
+                - device_configuration_id
+                - captured_at
+      description: Create a verified capture
+  '/captures/{capture_id}':
+    parameters:
+      - schema:
+          type: string
+        name: capture_id
+        in: path
+        required: true
+    patch:
+      summary: ''
+      operationId: patch-captures-capture_id
+      description: Update capture with tree id associating this specific capture with a known unique tree.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                tree_id:
+                  type: string
+                  minLength: 1
+                  format: uuid
+                status:
+                  type: string
+                  enum:
+                    - active
+                    - deleted
+              required:
+                - tree_id
+            examples:
+              example-1:
+                value:
+                  tree_id: f07488fc-5e0e-4ee8-a1d2-6e2f8b420128
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture'
+    get:
+      summary: ''
+      operationId: get-captures-capture_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture'
+  '/captures/{capture_id}/tags/':
+    parameters:
+      - schema:
+          type: string
+        name: capture_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/capture_tags'
+      operationId: get-captures-capture_id-tags
+    post:
+      summary: ''
+      operationId: post-captures-capture_id-tags
+      responses:
+        '204':
+          description: No Content
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: string
+                    format: uuid
+  '/captures/{capture_id}/tags/{tag_id}':
+    parameters:
+      - schema:
+          type: string
+        name: capture_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: tag_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture_tags'
+      operationId: get-captures-capture_id-tags-tag_id
+    patch:
+      summary: ''
+      operationId: patch-captures-capture_id-tags-tag_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/capture_tags'
+  /trees:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trees:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/tree'
+              examples:
+                example:
+                  value:
+                    trees:
+                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                        latest_capture_id: 1e5fbe21-6c4f-4591-9b61-068335323eab
+                        image_url: string
+                        lat: 0
+                        lon: 0
+                        species_id: string
+                        morphology: string
+                        age: 0
+                        status: string
+                        created_at: string
+                        updated_at: string
+      operationId: get-trees
+      description: Return all trees with some filtering criteria. The filtering criteria will be added as more information about the use case is determined.
+      parameters:
+        - schema:
+            type: number
+            default: 100
+            format: int
+            example: 100
+          in: query
+          name: limit
+          description: The number of results to return on a invocation
+        - schema:
+            type: string
+            default: '0'
+            example: '10'
+          in: query
+          name: offset
+          description: The number of trees objects to skip and return the rest for pagination
+        - schema:
+            type: string
+          in: query
+          name: species_id
+          description: Id of the species
+    post:
+      summary: ''
+      operationId: post-trees
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tree'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tree'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                latest_capture_id:
+                  type: string
+                  minLength: 1
+                image_url:
+                  type: string
+                  minLength: 1
+                lat:
+                  type: number
+                lon:
+                  type: number
+                species_id:
+                  type: string
+                  format: uuid
+                morphology:
+                  type: string
+                age:
+                  type: number
+                attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                      - key
+                      - value
+                gps_accuracy:
+                  type: number
+              required:
+                - id
+                - latest_capture_id
+                - image_url
+                - lat
+                - lon
+      description: 'Create a new unique tree in greenstand platform. '
+  '/trees/{tree_id}/tags/':
+    parameters:
+      - schema:
+          type: string
+        name: tree_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tree_tags'
+      operationId: get-trees-capture_id-tags
+    post:
+      summary: ''
+      operationId: post-trees-capture_id-tags
+      responses:
+        '204':
+          description: No Content
+  '/trees/{tree_id}/tags/{tag_id}':
+    parameters:
+      - schema:
+          type: string
+        name: tree_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: tag_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tree_tags'
+      operationId: get-trees-tree_id-tags-tag_id
+    patch:
+      summary: ''
+      operationId: patch-trees-tree_id-tags-tag_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tree_tags'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - deleted
+                    - active
+  '/trees/{tree_id}':
+    parameters:
+      - schema:
+          type: string
+        name: tree_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-trees-tree_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tree'
+    patch:
+      summary: ''
+      operationId: patch-trees-tree_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tree'
+  /trees/potential_matches:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  matches:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - latest_capture_id
+                        - image_url
+                        - lat
+                        - lon
+                        - species_id
+                        - morphology
+                        - age
+                        - status
+                        - created_at
+                        - updated_at
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        latest_capture_id:
+                          type: string
+                          minLength: 1
+                        image_url:
+                          type: string
+                          minLength: 1
+                        lat:
+                          type: number
+                        lon:
+                          type: number
+                        species_id:
+                          type: string
+                          minLength: 1
+                        morphology:
+                          type: string
+                          minLength: 1
+                        age:
+                          type: number
+                        status:
+                          type: string
+                          minLength: 1
+                        created_at:
+                          type: string
+                          minLength: 1
+                        updated_at:
+                          type: string
+                          minLength: 1
+                required:
+                  - matches
+              examples:
+                example:
+                  value:
+                    matches:
+                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                        latest_capture_id: 1e5fbe21-6c4f-4591-9b61-068335323eab
+                        image_url: string
+                        lat: 0
+                        lon: 0
+                        species_id: string
+                        morphology: string
+                        age: 0
+                        status: string
+                        created_at: string
+                        updated_at: string
+      operationId: get-trees
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: capture_id
+          description: 7020672e-da27-4213-aee4-101f05377537
+    parameters: []
+  /tags:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/tag'
+                  links:
+                    type: object
+                    properties:
+                      prev:
+                        type: string
+                      next:
+                        type: string
+                  query:
+                    type: object
+      operationId: get-tag
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: integer
+          in: query
+          name: offset
+    post:
+      summary: ''
+      operationId: post-tag
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isPublic:
+                  type: boolean
+                name:
+                  type: string
+              required:
+                - isPublic
+                - name
+    parameters: []
+  '/tags/{tagid}':
+    parameters:
+      - schema:
+          type: string
+        name: tagid
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-tags-tagid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag'
+    patch:
+      summary: ''
+      operationId: patch-tags-tagid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag'
+  /grower_account:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-grower_account
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: limit
+          description: number of records to return
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: offset to start from in returned rows
+        - schema:
+            type: string
+          in: query
+          name: organization_id
+          description: planting organization id
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: primary key
+        - schema:
+            type: string
+          in: query
+          name: wallet
+          description: the wallet (equivalent to handle) of a grower_account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  grower_accounts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/grower_account'
+    post:
+      summary: ''
+      operationId: post-grower_account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                person_id:
+                  type: string
+                  format: uuid
+                organization_id:
+                  type: string
+                  format: uuid
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                lat:
+                  type: integer
+                lon:
+                  type: integer
+                email:
+                  type: string
+                phone:
+                  type: string
+                image_url:
+                  type: string
+                  format: uri
+                image_rotation:
+                  type: string
+                first_registration_at:
+                  type: string
+                  format: date-time
+              required:
+                - wallet
+                - first_name
+                - last_name
+                - lat
+                - lon
+                - image_url
+                - first_registration_at
+    parameters: []
+    put:
+      summary: ''
+      operationId: put-grower_account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                person_id:
+                  type: string
+                  format: uuid
+                organization_id:
+                  type: string
+                  format: uuid
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                lat:
+                  type: integer
+                lon:
+                  type: integer
+                email:
+                  type: string
+                phone:
+                  type: string
+                image_url:
+                  type: string
+                  format: uri
+                image_rotation:
+                  type: string
+                first_registration_at:
+                  type: string
+                  format: date-time
+              required:
+                - wallet
+                - first_name
+                - last_name
+                - lat
+                - lon
+                - image_url
+                - first_registration_at
+  '/grower_account/{grower_account_id}':
+    parameters:
+      - schema:
+          type: string
+        name: grower_account_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+      operationId: get-grower_account-grower_account_id
+    patch:
+      summary: ''
+      operationId: patch-grower_account-grower_account_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/grower_account'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                person_id:
+                  type: string
+                  format: uuid
+                organization_id:
+                  type: string
+                  format: uuid
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                image_url:
+                  type: string
+                  format: uri
+                image_rotation:
+                  type: string
+                status:
+                  type: string
+  '/grower_accounts/image':
+      post:
+        summary: upload an image for a grower account
+        tags:
+          - grower accounts
+        operationId: post-grower_accounts_image
+        responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/grower_accounts_image'
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  image:
+                    type: string
+                    format: binary
+                  grower_account_id:
+                    type: string
+                    format: uuid
+                required:
+                  - image
+                  - grower_account_id
+
+  '/grower_accounts/image/{image_id}':
+      parameters:
+        - schema:
+            type: string
+          name: image_id
+          in: path
+          required: true
+      patch:
+        summary: update a grower account image
+        description:
+        tags:
+          - grower accounts
+        operationId: patch-grower_accounts_image-image_id
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/grower_accounts_image'
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  active:
+                    type: boolean
+                required:
+                  - active
+
+
+
+components:
+  schemas:
+    capture:
+      description: A capture represents a verified snapshot (photo) of a tree at a point in time.
+      type: object
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          reference_id: 0
+          tree_id: 0
+          image_url: string
+          lat: 0
+          lon: 0
+          user_id: 0
+          user_photo_url: string
+          username: string
+          planting_organization_id: 0
+          species_id: 0
+          morphology: string
+          age: 0
+          note: string
+          attributes:
+            entries:
+              - key: string
+                value: string
+          domain_specific_data: {}
+          status: string
+          created_at: string
+          updated_at: string
+      properties:
+        id:
+          type: string
+          minLength: 1
+          format: uuid
+        tree_id:
+          type: string
+          format: uuid
+        image_url:
+          type: string
+          minLength: 1
+        lat:
+          type: number
+        lon:
+          type: number
+        planting_organization_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          minLength: 1
+          enum:
+            - active
+            - deleted
+        created_at:
+          type: string
+          minLength: 1
+          format: date-time
+        captured_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        tree_associated:
+          type: boolean
+        grower_account_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - image_url
+        - lat
+        - lon
+        - status
+        - created_at
+        - captured_at
+    tree:
+      description: A unique tree tracked by Greenstand platform.
+      type: object
+      x-examples:
+        example-1:
+          id: string
+          latest_capture_id: string
+          image_url: string
+          lat: 0
+          lon: 0
+          species_id: string
+          morphology: string
+          age: 0
+          status: string
+          created_at: string
+          updated_at: string
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          latest_capture_id: 1e5fbe21-6c4f-4591-9b61-068335323eab
+          image_url: string
+          lat: 0
+          lon: 0
+          species_id: string
+          morphology: string
+          age: 0
+          status: string
+          created_at: string
+          updated_at: string
+      properties:
+        id:
+          type: string
+          minLength: 1
+          format: uuid
+        latest_capture_id:
+          type: string
+          minLength: 1
+          format: uuid
+        image_url:
+          type: string
+          minLength: 1
+        lat:
+          type: number
+        lon:
+          type: number
+        species_id:
+          type: string
+          format: uuid
+        morphology:
+          type: string
+        age:
+          type: number
+        status:
+          type: string
+          minLength: 1
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        gps_accuracy:
+          type: number
+        attributes:
+          type: array
+          items:
+            type: object
+      required:
+        - id
+        - latest_capture_id
+        - image_url
+        - lat
+        - lon
+    tag:
+      title: tag
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isPublic:
+          type: boolean
+        status:
+          type: string
+    capture_tags:
+      title: capture_tags
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        capture_id:
+          type: string
+          format: uuid
+        tag_id:
+          type: string
+          format: uuid
+        tag_name:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - capture_id
+        - tag_id
+        - tag_name
+        - status
+        - created_at
+        - updated_at
+    tree_tags:
+      title: tree_tags
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tree_id:
+          type: string
+          format: uuid
+        tag_id:
+          type: string
+          format: uuid
+        tag_name:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - tree_id
+        - tag_id
+        - tag_name
+        - status
+        - created_at
+        - updated_at
+    grower_account:
+      title: grower_account
+      type: object
+      properties:
+        id:
+          type: string
+        wallet:
+          type: string
+        person_id:
+          type: string
+        organization_id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        lat:
+          type: string
+        lon:
+          type: string
+        image_url:
+          type: string
+        image_rotation:
+          type: string
+        status:
+          type: string
+        first_registered_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    grower_accounts_image:
+      description: ''
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        grower_account_id:
+          type: string
+          format: uuid
+        image_url:
+          type: string
+        active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - grower_account_id
+        - image_url
+        - active
+        - created_at
+        - updated_at
+
