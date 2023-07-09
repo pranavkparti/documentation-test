@@ -19,3 +19,9 @@
   * [Greenstand User Guides](user-guides/index.md)
   * [How to Use the Treetracker Wallet API](user-guides/walletapihow.md)
   * [Treetracker Wallet API Reference](user-guides/walletapiref.md)
+
+## Projects
+
+* [Admin Panel](https://docs.greenstand.org/admin-panel/)
+* [Engineering Handbook](https://docs.greenstand.org/engineering/)
+* [Web Map](https://docs.greenstand.org/web-map/)
