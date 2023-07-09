@@ -1,6 +1,5 @@
 ---
 title: User Guides
-layout: default
 has_children: true
 nav_order: 3
 ---
@@ -13,13 +12,13 @@ To contribute, comment, or question the documentation, please submit an issue or
 
 ### **Treetracker Software:** General introduction tree growers and funders.
 
-[Domain Model](https://github.com/Greenstand/system-design-docs/blob/master/domain-model/domain_model.md): A glossary terms specific to Greenstand and its treetracker platform.
+[Domain Model](https://github.com/Greenstand/system-design-docs/blob/master/domain-model/domain\_model.md): A glossary terms specific to Greenstand and its treetracker platform.
 
 [GreenStand - Privacy Policy](https://greenstand.org/devbox/privacy-policy-for-the-app): Unless otherwise authorized we will not disclose sensitive user information, such as contact information. Our primary data collection is focused around scientific research related to the survival processes of trees as well as systematic harvesting of tree-related products.
 
 ### **Administration Panel:** Tools for managing Greenstand data and users.
 
-[How to Record Earnings and Payments](earningshow.md): Instructions for getting and updating records of debts and payments to growers.
+[How to Record Earnings and Payments](earningshow/): Instructions for getting and updating records of debts and payments to growers.
 
 [Greenstand Earnings Reference](earningsref.md): Complete details regarding the tool for getting and updating records of debts and payments to growers.
 

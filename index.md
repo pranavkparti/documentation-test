@@ -19,7 +19,7 @@ nav_order: 1
 
 
 
-```
+```javascript
 // Some code
 const sayHello = () => {
     console.log('Hello world');
