@@ -21,7 +21,10 @@
   * [How to Use the Treetracker Wallet API](user-guides/walletapihow.md)
   * [Treetracker Wallet API Reference](user-guides/walletapiref.md)
 * [Decisions](decisions/README.md)
+  * [#0001](decisions/0001-grower-accounts-having-multiple-organizations.md)
 * [API](api/spec/README.md)
+  * [Matching Tool](api/spec/matcheing-tool-test-case.md)
+  * [API Spec](api/spec/treetracker.v1.yaml)
 
 ## Projects
 
