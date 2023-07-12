@@ -17,12 +17,27 @@
   - In various wikis, as listed in [Current Documentation](currentDocumentation.md)
 
 ## New framework
-- All the documentation is consolidated under `docs.greenstand.org`, via Gitbook
+- Single Documentation Portal
+  - All the documentation is consolidated under `docs.greenstand.org`, via Gitbook
+  - All documentation is up to date
 - Following `docPlan.md`
 - Keeping a changelog
 - All relevant project repos have a `docs/` directory corresponding to a Gitbook space.
+- Sustainable processes for maintaining documentation.
 
-## Issues to consider
+## Project Scope
+The scope of this documentation project includes:
+- Indexing and auditing the status of all existing documentation
+- Bringing the documentation into a standardized and editable format and following the DPG standard opensource best practices
+- Removing old and irrelevant documentation
+- Updating and standardizing all project-critical documentation
+
+## Indexing existing documentation
+- Complete inventory of existing documentation
+- MD file on Github with links and descriptions of all documentation
+- See [Documentation Inventory](documentationInventory.md)
+
+## Standardizing the documentation
 
 ![img.png](../assets/img.png)
 
@@ -58,6 +73,10 @@ Using the above image as a guideline, we can divide the documentation into 2 typ
   - Deploy or release a product
   - May use jargon or industry-specific terms
   
+
+## Removing old documentation
+## Updating documentation
+
 
 ## TODOs
 - Standardize documentation for project repos
