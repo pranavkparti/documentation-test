@@ -24,7 +24,7 @@
 
 ## Issues to consider
 
-![img.png](pics/img.png)
+![img.png](../assets/img.png)
 
 Using the above image as a guideline, we can divide the documentation into 2 types (for now):
 1. User Documentation (End users)
