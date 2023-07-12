@@ -5,7 +5,6 @@
 * [contributor-docs](contributor-docs/README.md)
   * [Documentation Framework](contributor-docs/documentationFramework.md)
   * [Documentation Inventory](contributor-docs/documentationInventory.md)
-  * [Current Documentation](contributor-docs/currentDocumentation.md)
   * [Documentation](contributor-docs/documentation.md)
   * [Basic Git Hub skills required!](contributor-docs/githubBasics.md)
   * [Contributor Documentation](contributor-docs/index.md)
