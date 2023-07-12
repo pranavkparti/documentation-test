@@ -3,6 +3,7 @@
 * [just-the-docs-template](README.md)
 * [Greenstand Documentation, Index](index.md)
 * [contributor-docs](contributor-docs/README.md)
+  * [Documentation Framework](contributor-docs/notes.md)
   * [Current Documentation](contributor-docs/currentDocumentation.md)
   * [Documentation](contributor-docs/documentation.md)
   * [Basic Git Hub skills required!](contributor-docs/githubBasics.md)
