@@ -1,3 +1,12 @@
+---
+title: Documentation Framework
+layout: default
+nav_order: 1
+parent: Contribute
+has_children: true
+---
+
+
 ## Current framework
 - The documentation is outdated, ambiguous, partial, and scattered. It exists in sources such as:
   - `greenstand.org/docs` which is redundant and can be removed
