@@ -77,7 +77,7 @@ Using the above image as a guideline, we can divide the documentation into 2 typ
   - How to use features of a product.
   - Screenshots explaining those features.
   - Contacts of the developer if an undocumented question arises and more.
-  > Source: https://medium.com/@kesiparker/technical-documentation-vs-user-documentation-ff68e7de1985
+  > Source: <https://medium.com/@kesiparker/technical-documentation-vs-user-documentation-ff68e7de1985>
 - **Technical documentation**
   - How the review process works 
   - Style guides 
