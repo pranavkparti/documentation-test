@@ -24,7 +24,7 @@
   * [#0001](decisions/0001-grower-accounts-having-multiple-organizations.md)
 * [API](api/spec/README.md)
   * [Matching Tool](api/spec/matcheing-tool-test-case.md)
-  * [API Spec](api/spec/treetracker.v1.yaml)
+  * [API Spec](spec/api-spec.md)
 
 ## Projects
 
